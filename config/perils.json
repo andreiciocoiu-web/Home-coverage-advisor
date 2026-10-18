@@ -1,0 +1,349 @@
+{
+  "_nota": "Taxonomie de lucru pentru identificarea riscurilor si construirea interogarilor. NU presupune ca vreun produs acopera aceste riscuri; este doar lista de categorii de investigat in documente. Declansatorii (triggers) sunt cautati in descrierea utilizatorului fara diacritice.",
+  "perils": {
+    "water_damage": {
+      "label": "Daune prin apa din instalatii (conducte sparte/avariate)",
+      "triggers": [
+        "teava",
+        "tevi",
+        "conduct",
+        "spart",
+        "fisur",
+        "instalati",
+        "apa de la",
+        "scurgere",
+        "robinet",
+        "calorifer",
+        "boiler",
+        "masina de spalat",
+        "apa a curs",
+        "inundat de la"
+      ],
+      "coverage_queries": [
+        "daune cauzate de apa provenita din conducte instalatii avariate spargere",
+        "avarii accidentale instalatii de apa canalizare incalzire scurgere apa"
+      ],
+      "exclusion_queries": [
+        "excluderi apa infiltratii treptat uzura coroziune intretinere necorespunzatoare",
+        "locuinta nelocuita neocupata perioada mai mare zile instalatii golite apa",
+        "mucegai umiditate condens infiltratii lente"
+      ],
+      "material_facts": [
+        "sudden_or_gradual",
+        "unoccupied_period_days",
+        "maintenance_wear",
+        "third_party_damage",
+        "probable_cause"
+      ]
+    },
+    "roof_infiltration": {
+      "label": "Infiltratii prin acoperis / pereti",
+      "triggers": [
+        "acoperis",
+        "infiltr",
+        "tigl",
+        "terasa",
+        "pod",
+        "streasina",
+        "a patruns apa",
+        "picura din tavan"
+      ],
+      "coverage_queries": [
+        "patrunderea apei prin acoperis ca urmare a furtunii grindinei",
+        "infiltratii acoperis avariat de un risc asigurat"
+      ],
+      "exclusion_queries": [
+        "infiltratii prin acoperis neintretinut uzura deschideri neacoperite",
+        "patrunderea apei de ploaie prin ferestre usi deschise acoperis defect"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "sudden_or_gradual",
+        "maintenance_wear"
+      ]
+    },
+    "flood": {
+      "label": "Inundatie din surse naturale / ape de suprafata",
+      "triggers": [
+        "inundati",
+        "revarsare",
+        "rau",
+        "torential",
+        "ape de suprafata",
+        "subsol inundat",
+        "viitura",
+        "ploaie abundenta"
+      ],
+      "coverage_queries": [
+        "inundatie revarsare ape de suprafata fenomene naturale",
+        "inundatii alunecari de teren riscuri catastrofice"
+      ],
+      "exclusion_queries": [
+        "excluderi inundatie ape freatice refulare canalizare subsol",
+        "riscuri acoperite prin polita obligatorie PAD"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "property_type"
+      ]
+    },
+    "fire": {
+      "label": "Incendiu, trasnet, explozie",
+      "triggers": [
+        "incendiu",
+        "foc",
+        "a luat foc",
+        "explozi",
+        "trasnet",
+        "fum",
+        "flacari",
+        "au ars",
+        "a ars complet"
+      ],
+      "coverage_queries": [
+        "incendiu trasnet explozie caderea aparatelor de zbor",
+        "daune produse de fum funingine incendiu"
+      ],
+      "exclusion_queries": [
+        "excluderi incendiu intentie fumat nerespectarea normelor PSI",
+        "ardere fara flacara arsuri produse de obiecte de fumat"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "negligence"
+      ]
+    },
+    "electrical": {
+      "label": "Fenomene electrice (supratensiune, scurtcircuit)",
+      "triggers": [
+        "supratensiun",
+        "scurtcircuit",
+        "electric",
+        "tensiune",
+        "s-a ars aparatul",
+        "fenomene electrice",
+        "priza"
+      ],
+      "coverage_queries": [
+        "fenomene electrice supratensiune scurtcircuit aparate electrice",
+        "avarii electrice aparate electrocasnice"
+      ],
+      "exclusion_queries": [
+        "excluderi fenomene electrice uzura defecte de fabricatie garantie producator"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "maintenance_wear"
+      ]
+    },
+    "theft": {
+      "label": "Furt prin efractie / talharie",
+      "triggers": [
+        "furt",
+        "furat",
+        "spargere",
+        "efracti",
+        "talhari",
+        "hoti",
+        "lipsa bunuri"
+      ],
+      "coverage_queries": [
+        "furt prin efractie talharie bunuri mobile",
+        "efractie fortarea usii ferestrei sustragere bunuri"
+      ],
+      "exclusion_queries": [
+        "excluderi furt fara urme de efractie usi neincuiate ferestre deschise",
+        "furt bunuri de valoare bijuterii numerar limite"
+      ],
+      "material_facts": [
+        "preventive_measures",
+        "police_report",
+        "unoccupied_period_days"
+      ]
+    },
+    "vandalism": {
+      "label": "Vandalism",
+      "triggers": [
+        "vandal",
+        "distrus intentionat",
+        "graffiti",
+        "spart geamul de catre"
+      ],
+      "coverage_queries": [
+        "acte de vandalism distrugere intentionata de terti"
+      ],
+      "exclusion_queries": [
+        "excluderi vandalism savarsit de asigurat membri familie chiriasi"
+      ],
+      "material_facts": [
+        "police_report",
+        "probable_cause"
+      ]
+    },
+    "glass_breakage": {
+      "label": "Spargere geamuri / sticla",
+      "triggers": [
+        "geam",
+        "sticla",
+        "oglind",
+        "vitrina",
+        "termopan"
+      ],
+      "coverage_queries": [
+        "spargerea accidentala a geamurilor sticlei oglinzilor"
+      ],
+      "exclusion_queries": [
+        "excluderi zgarieturi geamuri in timpul montajului deplasarii"
+      ],
+      "material_facts": [
+        "probable_cause"
+      ]
+    },
+    "accidental_damage": {
+      "label": "Daune accidentale (all risks / cadere obiecte / avarii accidentale)",
+      "triggers": [
+        "accidental",
+        "a cazut",
+        "am scapat",
+        "lovit",
+        "s-a rasturnat"
+      ],
+      "coverage_queries": [
+        "daune accidentale bunuri asigurate eveniment neprevazut",
+        "toate riscurile cu exceptia celor excluse"
+      ],
+      "exclusion_queries": [
+        "excluderi daune accidentale uzura animale de companie zgarieturi defecte"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "negligence"
+      ]
+    },
+    "natural_hazards": {
+      "label": "Furtuna, grindina, cutremur, greutatea zapezii",
+      "triggers": [
+        "furtun",
+        "vant",
+        "grindin",
+        "cutremur",
+        "seism",
+        "zapad",
+        "uragan",
+        "copac cazut"
+      ],
+      "coverage_queries": [
+        "furtuna grindina greutatea stratului de zapada",
+        "cutremur de pamant alunecare de teren"
+      ],
+      "exclusion_queries": [
+        "excluderi furtuna viteza vantului sub prag constructii neintretinute",
+        "cutremur acoperit prin PAD franciza"
+      ],
+      "material_facts": [
+        "probable_cause",
+        "maintenance_wear"
+      ]
+    },
+    "civil_liability": {
+      "label": "Raspundere civila fata de terti (vecini)",
+      "triggers": [
+        "vecin",
+        "apartamentul de dedesubt",
+        "apartamentul de jos",
+        "tavanul vecin",
+        "terti",
+        "alt apartament",
+        "tertilor",
+        "proprietatea vecinului"
+      ],
+      "coverage_queries": [
+        "raspundere civila fata de terti daune produse vecinilor",
+        "raspunderea civila a proprietarului locuintei pentru prejudicii cauzate tertilor prin apa"
+      ],
+      "exclusion_queries": [
+        "excluderi raspundere civila membri familie bunuri in custodie amenzi",
+        "limita de raspundere civila pe eveniment"
+      ],
+      "material_facts": [
+        "third_party_damage",
+        "negligence"
+      ]
+    }
+  },
+  "fact_fields": {
+    "property_type": {
+      "label": "Tipul bunului asigurat",
+      "question": "Ce tip de locuinta este (apartament in bloc, casa individuala) si este locuinta principala sau secundara?",
+      "why": "Unele produse sau acoperiri difera intre apartament si casa si intre locuinta principala si secundara."
+    },
+    "incident_type": {
+      "label": "Tipul incidentului"
+    },
+    "probable_cause": {
+      "label": "Cauza probabila",
+      "question": "Care este cauza stabilita sau probabila a daunei (de ex. fisurarea brusca a unei tevi, desfacerea unei imbinari, coroziune, scurgere lenta)?",
+      "why": "Cauza decide daca evenimentul intra sub un risc asigurat sau sub o excludere (ex. uzura, coroziune)."
+    },
+    "location": {
+      "label": "Locatia si circumstantele"
+    },
+    "occurrence_date": {
+      "label": "Data producerii",
+      "question": "Cand s-a produs (sau cand a fost descoperit) evenimentul?",
+      "why": "Data stabileste versiunea aplicabila a conditiilor si incidenta perioadelor de asteptare."
+    },
+    "direct_damage": {
+      "label": "Daune directe la bunurile asigurate"
+    },
+    "third_party_damage": {
+      "label": "Daune la bunurile tertilor",
+      "question": "Au fost afectate bunuri ale altor persoane (de ex. apartamentul vecinului)? Ce anume?",
+      "why": "Daunele la terti se analizeaza separat, prin garantia de raspundere civila, care poate lipsi sau avea limita proprie."
+    },
+    "civil_liability": {
+      "label": "Potentiala raspundere civila"
+    },
+    "sudden_or_gradual": {
+      "label": "Eveniment brusc sau treptat",
+      "question": "Dauna a aparut brusc (ex. teava sparta dintr-odata) sau s-a dezvoltat in timp (pete, umezeala, scurgere lenta observata anterior)?",
+      "why": "Majoritatea conditiilor exclud daunele produse treptat; diferenta poate schimba complet concluzia."
+    },
+    "maintenance_wear": {
+      "label": "Intretinere / uzura",
+      "question": "Exista semne de uzura, coroziune sau lipsa de intretinere a instalatiei/elementului avariat? Cand a fost ultima revizie sau inlocuire?",
+      "why": "Uzura si lipsa intretinerii sunt excluderi frecvente."
+    },
+    "unoccupied_period_days": {
+      "label": "Perioada in care locuinta a fost nelocuita (zile)",
+      "question": "Locuinta era nelocuita la momentul evenimentului? Daca da, de cate zile si ati oprit/golit instalatiile de apa?",
+      "why": "Multe conditii limiteaza acoperirea daca locuinta este nelocuita peste un numar de zile sau impun masuri (oprirea apei)."
+    },
+    "negligence": {
+      "label": "Posibila neglijenta"
+    },
+    "preventive_measures": {
+      "label": "Masuri de prevenire existente",
+      "question": "Ce masuri de protectie existau (usa metalica, incuietori, alarma, ferestre inchise)?",
+      "why": "La furt, conditiile cer de regula urme de efractie si anumite masuri minime de protectie."
+    },
+    "police_report": {
+      "label": "Sesizare la politie",
+      "question": "Ati depus o sesizare la politie?",
+      "why": "Furtul si vandalismul sunt de regula conditionate de sesizarea autoritatilor."
+    },
+    "policy_options": {
+      "label": "Optiuni / clauze suplimentare cunoscute",
+      "question": "Stiti ce acoperiri optionale ati selectat (ex. raspundere civila, fenomene electrice, bunuri mobile)? Aveti oferta sau polita?",
+      "why": "Acoperirile optionale se aplica doar daca au fost cumparate si sunt confirmate in polita/oferta."
+    },
+    "limits_deductibles": {
+      "label": "Limite / fransize cunoscute"
+    },
+    "water_shutoff": {
+      "label": "Apa oprita / instalatii golite pe durata neocuparii",
+      "question": "Pe durata in care locuinta a fost nelocuita, ati oprit apa de la robinetul general sau ati golit instalatiile?",
+      "why": "Unele conditii impun oprirea apei cand locuinta este nelocuita sau prevad o exceptie de la excludere in acest caz."
+    }
+  }
+}

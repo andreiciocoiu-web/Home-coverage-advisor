@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coverage Advisor</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark">CA</span>
+    <div><strong>Home Insurance Coverage Advisor</strong><small>Analiza contractuala a acoperirii pentru asigurari de locuinte</small></div>
+  </div>
+  <div class="auth">
+    <span id="who" class="muted"></span>
+    <input id="token" type="password" placeholder="Token de acces" autocomplete="off">
+    <button id="loginBtn" class="btn">Conectare</button>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="docs" class="active">1. Documente</button>
+  <button data-tab="incident">2. Incident</button>
+  <button data-tab="results">3. Rezultate</button>
+  <button data-tab="review">4. Revizuire</button>
+  <button data-tab="method">5. Metodologie si audit</button>
+</nav>
+
+<div id="statusBar" class="statusbar"></div>
+
+<main>
+<!-- DOCUMENTE -->
+<section id="tab-docs" class="tab active">
+  <div class="grid2">
+    <div class="card">
+      <h2>Sursa documentelor</h2>
+      <p class="muted">Introduceti ID-ul sau URL-ul folderului Google Drive. Aplicatia citeste folderul cu acces doar-citire.</p>
+      <form id="sourceForm" class="row">
+        <select id="srcKind"><option value="drive">Google Drive</option><option value="local">Folder local (admin)</option></select>
+        <input id="srcLoc" placeholder="https://drive.google.com/drive/folders/... sau ID" required>
+        <input id="srcLabel" placeholder="Eticheta (optional)">
+        <button class="btn primary">Adauga sursa</button>
+      </form>
+      <div id="sources"></div>
+    </div>
+    <div class="card">
+      <h2>Stare sincronizare</h2>
+      <div id="syncInfo" class="muted">Selectati o sursa si porniti sincronizarea.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="cardhead"><h2>Documente indexate</h2>
+      <label class="muted"><input type="checkbox" id="showInactive"> include versiuni inlocuite / sterse</label></div>
+    <div id="relations"></div>
+    <div id="docs" class="tablewrap"></div>
+  </div>
+</section>
+
+<!-- INCIDENT -->
+<section id="tab-incident" class="tab">
+  <div class="card">
+    <h2>Descrieti incidentul</h2>
+    <p class="muted">Descrieti ce s-a intamplat, ce bunuri au fost afectate (inclusiv ale vecinilor), cand si in ce circumstante. Nu introduceti date personale (CNP, nume, adrese exacte).</p>
+    <textarea id="incidentText" rows="6" maxlength="6000"></textarea>
+    <div class="row">
+      <button id="exampleBtn" class="btn">Exemplu</button>
+      <button id="extractBtn" class="btn primary">Analizeaza faptele</button>
+    </div>
+  </div>
+  <div id="factsCard" class="card hidden">
+    <div class="cardhead"><h2>Fapte identificate</h2><span id="factsMode" class="pill"></span></div>
+    <div class="legend"><span class="st provided">Furnizat de dvs.</span><span class="st inferred">Dedus - nu este fapt stabilit</span><span class="st unknown">Necunoscut</span></div>
+    <div id="facts" class="tablewrap"></div>
+    <h3>Componentele pierderii</h3>
+    <div id="components"></div>
+  </div>
+  <div id="questionsCard" class="card hidden">
+    <h2>Intrebari de clarificare</h2>
+    <p class="muted">Doar intrebarile care pot schimba concluzia. Puteti lasa necompletat ce nu stiti - informatia lipsa nu va fi interpretata favorabil.</p>
+    <form id="questions"></form>
+    <button id="analyzeBtn" class="btn primary">Compara produsele</button>
+  </div>
+</section>
+
+<!-- REZULTATE -->
+<section id="tab-results" class="tab">
+  <div id="noResults" class="card muted">Nicio analiza inca. Descrieti un incident in pasul 2.</div>
+  <div id="results" class="hidden">
+    <div class="card verdict" id="verdict"></div>
+    <div class="disclaimer" id="disclaimer"></div>
+    <div class="card">
+      <div class="cardhead"><h2>Clasament</h2>
+        <div class="row">
+          <button class="btn" data-export="html">Export HTML</button>
+          <button class="btn" data-export="pdf">Export PDF</button>
+          <button class="btn" data-export="json">Export JSON</button>
+        </div></div>
+      <div id="rankTable" class="tablewrap"></div>
+      <p class="muted small" id="analysisMeta"></p>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Comparatie pe dimensiuni</h2><canvas id="radar" height="320"></canvas><p class="muted small" id="radarNote"></p></div>
+      <div class="card"><h2>Scoruri si dovezi pe dimensiune</h2><p class="muted small">Selectati o celula pentru a vedea nivelul, regula si dovezile.</p><div id="dimTable" class="tablewrap"></div><div id="dimEvidence"></div></div>
+    </div>
+    <div id="details"></div>
+  </div>
+</section>
+
+<!-- REVIZUIRE -->
+<section id="tab-review" class="tab">
+  <div class="grid2">
+    <div class="card">
+      <h2>Feedback de revizuire</h2>
+      <p class="muted">Feedback-ul se stocheaza separat, este auditat si nu modifica documentele. Influenteaza doar ordonarea la regasire, dupa validarea de catre alt reviewer.</p>
+      <form id="fbForm" class="stack">
+        <select id="fbKind"></select>
+        <input id="fbAnalysis" placeholder="ID analiza">
+        <input id="fbProduct" placeholder="Produs (asigurator :: produs)">
+        <input id="fbClause" placeholder="ID clauza (pentru relevanta clauzei)">
+        <select id="fbRelevant"><option value="">Relevanta clauzei: -</option><option value="1">Relevanta</option><option value="0">Irelevanta</option></select>
+        <textarea id="fbText" rows="4" placeholder="Explicatie / clarificare / rezultat"></textarea>
+        <button class="btn primary">Inregistreaza</button>
+      </form>
+    </div>
+    <div class="card"><h2>Inregistrari</h2><div id="fbList" class="tablewrap"></div></div>
+  </div>
+</section>
+
+<!-- METODOLOGIE -->
+<section id="tab-method" class="tab">
+  <div class="grid2">
+    <div class="card">
+      <h2>Metodologie de scoring</h2>
+      <p class="muted">Scorul masoara puterea dovezilor contractuale disponibile pentru incidentul descris - nu probabilitatea de plata a despagubirii.</p>
+      <div id="methodCurrent"></div>
+      <h3>Propune modificare ponderi</h3>
+      <form id="methodForm" class="stack"><div id="weightInputs" class="weights"></div>
+        <input id="methodNote" placeholder="Justificare (obligatoriu)" required minlength="5">
+        <button class="btn">Trimite propunerea</button></form>
+      <div id="methodVersions"></div>
+    </div>
+    <div class="card">
+      <div class="cardhead"><h2>Jurnal de audit</h2><button id="retentionBtn" class="btn">Aplica retentia</button></div>
+      <div id="audit" class="tablewrap"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="drawer" class="drawer hidden"><div class="drawer-inner"><button id="drawerClose" class="btn">Inchide</button><div id="drawerBody"></div></div></div>
+<div id="toast" class="toast hidden"></div>
+</body>
+</html>

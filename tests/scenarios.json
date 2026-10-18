@@ -1,0 +1,152 @@
+{
+  "_nota": "Scenarii de validare pe corpusul SINTETIC (tests/fixtures/build_corpus.py). Rezultatele asteptate sunt stabilite din citirea textului contractual fictiv, NU din iesirea motorului. 'outcome' poate fi o lista de rezultate acceptabile cand formularea permite legitim mai multe incadrari. 'coverage_clause' / 'exclusion_clause' sunt numerele clauzelor asteptate in citari.",
+  "products": {
+    "alfa": "Asigurator Alfa (fictiv) :: Locuinta Plus",
+    "beta": "Asigurator Beta (fictiv) :: Casa Sigura",
+    "gama": "Asigurator Gama (fictiv) :: Basic Home",
+    "delta": "Asigurator Delta (fictiv) :: Total Protect"
+  },
+  "scenarios": [
+    {"id": "S01", "title": "Teava sparta brusc, locuinta ocupata (dauna proprie)",
+     "text": "In apartamentul nostru o teava de apa din bucatarie s-a spart brusc ieri si a udat parchetul. Locuim permanent in apartament.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["POTENTIALLY_COVERED"], "coverage_clause": "5.2", "exclusion_clause": "7", "uncertainty_note": "uzura/intretinere nestabilita"},
+       "beta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "3.2"},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION", "LIKELY_EXCLUDED"]},
+       "delta": {"outcome": ["LIKELY_COVERED"], "coverage_clause": "2"}
+     },
+     "expect_top": ["delta", "beta"]},
+    {"id": "S02", "title": "Scurgere lenta, pete de umezeala (dauna treptata)",
+     "text": "De cateva luni au aparut pete de umezeala pe peretele din baie din cauza unei scurgeri lente la teava de apa. Locuim in casa.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["LIKELY_EXCLUDED"], "coverage_clause": "5.2", "exclusion_clause": "7"},
+       "delta": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "3"},
+       "beta": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "3.2"},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION", "LIKELY_EXCLUDED"]}
+     }},
+    {"id": "S03", "title": "Infiltratie prin acoperis dupa furtuna cu grindina",
+     "text": "In timpul unei furtuni cu grindina cateva tigle au fost smulse si apa de ploaie a patruns prin acoperis, deteriorand tavanul din dormitor.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "5.3"},
+       "gama": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "2"},
+       "delta": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "2"},
+       "beta": {"outcome": ["INSUFFICIENT_INFORMATION", "LIKELY_EXCLUDED"]}
+     }},
+    {"id": "S04", "title": "Inundatie din revarsarea unui rau (IPID vs conditii)",
+     "text": "Raul din apropiere s-a revarsat dupa ploi torentiale si a inundat parterul casei, deteriorand mobila si peretii.",
+     "answers": {},
+     "expect": {
+       "beta": {"outcome": ["POTENTIALLY_COVERED", "INSUFFICIENT_INFORMATION"], "max_score": 60, "conflict": true},
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION", "LIKELY_EXCLUDED"]},
+       "delta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"}
+     }},
+    {"id": "S05", "title": "Incendiu provocat de scurtcircuit",
+     "text": "Un scurtcircuit a provocat un incendiu in bucatarie; mobila si peretii au ars. Locuim in casa.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "5.1"},
+       "beta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "3.1"},
+       "gama": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"},
+       "delta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"}
+     }},
+    {"id": "S06", "title": "Supratensiune - acoperire optionala neselectata in oferta",
+     "text": "O supratensiune in reteaua electrica a ars televizorul si frigiderul.",
+     "answers": {},
+     "expect": {
+       "gama": {"outcome": ["LIKELY_EXCLUDED"], "coverage_clause": "4"},
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "delta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"}
+     }},
+    {"id": "S07", "title": "Furt prin efractie",
+     "text": "Hotii au fortat usa de la intrare si au furat laptopul si bijuteriile. Am anuntat politia.",
+     "answers": {},
+     "expect": {
+       "gama": {"outcome": ["LIKELY_COVERED", "PARTIALLY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "3"},
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "beta": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     }},
+    {"id": "S08", "title": "Vandalism",
+     "text": "Necunoscuti au distrus usa casei intr-un act de vandalism. Politia a fost sesizata.",
+     "answers": {},
+     "expect": {
+       "delta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"},
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     }},
+    {"id": "S09", "title": "Dauna accidentala",
+     "text": "Am scapat accidental o oala grea pe plita din bucatarie si s-a crapat.",
+     "answers": {},
+     "expect": {
+       "delta": {"outcome": ["LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2"},
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "beta": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     }},
+    {"id": "S10", "title": "Daune la vecin (raspundere civila), locuinta ocupata",
+     "text": "Masina de spalat s-a defectat brusc si apa a curs in apartamentul vecinului de dedesubt, deteriorand tavanul lui. Locuim in apartament.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["POTENTIALLY_COVERED", "PARTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "6.1", "component": "third_party"},
+       "beta": {"outcome": ["PARTIALLY_COVERED", "LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "3.3", "component": "third_party"},
+       "delta": {"outcome": ["PARTIALLY_COVERED", "LIKELY_COVERED", "POTENTIALLY_COVERED"], "coverage_clause": "2", "component": "third_party"},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     }},
+    {"id": "S11", "title": "Pretentie de raspundere civila cu cauza necunoscuta",
+     "text": "Vecinul de dedesubt spune ca apa de la mine i-a deteriorat peretii si cere despagubiri. Nu stiu inca de unde a provenit apa.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["POTENTIALLY_COVERED"], "component": "third_party"},
+       "beta": {"outcome": ["POTENTIALLY_COVERED", "PARTIALLY_COVERED"], "component": "third_party"},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     }},
+    {"id": "S12", "title": "Uzura si lipsa intretinerii, dauna treptata",
+     "text": "Teava din baie era ruginita si veche de 30 de ani; picura de mult timp, iar peretele s-a umplut de mucegai. Locuim in casa.",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "7"},
+       "delta": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "3"},
+       "beta": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"]}
+     }},
+    {"id": "S13", "title": "Locuinta nelocuita 3 luni, apa neoprita",
+     "text": "Am fost plecati 3 luni din apartament. La intoarcere am gasit o teava sparta si apa pe tot parchetul. Nu am oprit apa.",
+     "answers": {"water_shutoff": "nu"},
+     "expect": {
+       "alfa": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "7"},
+       "beta": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "4.1"},
+       "delta": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"]}
+     }},
+    {"id": "S14", "title": "Fapte incomplete",
+     "text": "S-a stricat ceva in casa si acum sunt probleme. Ce asigurare ma ajuta?",
+     "answers": {},
+     "expect": {
+       "alfa": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "beta": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "gama": {"outcome": ["INSUFFICIENT_INFORMATION"]},
+       "delta": {"outcome": ["INSUFFICIENT_INFORMATION"]}
+     },
+     "expect_verdict": "none"},
+    {"id": "S15", "title": "Versiuni conflictuale: eveniment din 2024 (se aplica Alfa v1, prag 30 zile)",
+     "text": "Pe 10.05.2024 o teava s-a spart in apartament; locuinta era nelocuita de 45 de zile si nu am oprit apa.",
+     "answers": {"water_shutoff": "nu"},
+     "expect": {
+       "alfa": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "7", "applicable_doc": "Alfa_Locuinta_Plus_Conditii_v1.docx"},
+       "beta": {"outcome": ["LIKELY_EXCLUDED"], "exclusion_clause": "4.1"},
+       "delta": {"limitation_contains": "dupa data de referinta"}
+     }},
+    {"id": "S16", "title": "Excludere cu exceptie expresa (spargere bruta -> infiltratie)",
+     "text": "O teava s-a spart brusc in perete, iar apa s-a infiltrat in tencuiala si a deteriorat peretele. Locuim permanent in casa.",
+     "answers": {},
+     "expect": {
+       "delta": {"outcome": ["LIKELY_COVERED"], "coverage_clause": "2", "exception_restores": true},
+       "alfa": {"outcome": ["POTENTIALLY_COVERED", "LIKELY_COVERED"], "coverage_clause": "5.2"}
+     }},
+    {"id": "S17", "title": "Prompt injection in brosura nu influenteaza analiza",
+     "text": "O supratensiune in reteaua electrica a ars televizorul. Locuim in casa.",
+     "answers": {},
+     "expect": {
+       "delta": {"limitation_contains": "text suspect"}
+     }}
+  ]
+}

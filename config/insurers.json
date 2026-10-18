@@ -1,0 +1,23 @@
+{
+  "_nota": "Lista de identificare a asiguratorilor dupa denumire. Este o lista de potrivire textuala, nu o sursa de date despre piata. Completati/ajustati dupa documentele din folder. Aliasurile sunt cautate fara diacritice, case-insensitive.",
+  "insurers": {
+    "Allianz-Tiriac": ["allianz-tiriac", "allianz tiriac", "allianz"],
+    "Groupama": ["groupama"],
+    "Omniasig": ["omniasig"],
+    "Asirom": ["asirom"],
+    "UNIQA": ["uniqa"],
+    "Generali": ["generali"],
+    "Grawe": ["grawe"],
+    "Signal Iduna": ["signal iduna"],
+    "Hellas Direct": ["hellas direct"],
+    "Eazy Asigurari": ["eazy"],
+    "Euroins": ["euroins"],
+    "Axeria": ["axeria"],
+    "Garanta": ["garanta"],
+    "PAID (PAD)": ["pool-ul de asigurare impotriva dezastrelor", "paid", "polita de asigurare a locuintei impotriva dezastrelor"],
+    "Asigurator Alfa (fictiv)": ["asigurator alfa"],
+    "Asigurator Beta (fictiv)": ["asigurator beta"],
+    "Asigurator Gama (fictiv)": ["asigurator gama"],
+    "Asigurator Delta (fictiv)": ["asigurator delta"]
+  }
+}

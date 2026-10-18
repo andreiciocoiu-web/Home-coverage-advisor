@@ -1,0 +1,66 @@
+{
+  "_nota": "Metodologie de scoring v1. Scorurile masoara puterea dovezilor contractuale disponibile pentru incidentul descris, NU probabilitatea de plata a despagubirii. Modificarile se propun din UI si intra in vigoare doar dupa aprobarea unui administrator.",
+  "weights": {
+    "coverage_match": 30,
+    "exclusion_risk": 25,
+    "clarity": 15,
+    "completeness": 10,
+    "limits": 10,
+    "conditions": 5,
+    "evidence": 5
+  },
+  "rubrics": {
+    "coverage_match": {
+      "express": 100,
+      "general": 70,
+      "optional_unconfirmed": 45,
+      "ambiguous": 35,
+      "optional_not_selected": 5,
+      "none_found": 0
+    },
+    "exclusion_risk": {
+      "none_identified": 100,
+      "exception_restores": 80,
+      "possible": 50,
+      "possible_material": 30,
+      "likely": 15,
+      "clearly": 0
+    },
+    "clarity": {
+      "clear_direct": 100,
+      "clear_with_definitions": 80,
+      "ambiguous": 45,
+      "conflicting_documents": 25,
+      "not_found": 0
+    },
+    "limits": {
+      "no_material_limit": 100,
+      "deductible_only": 75,
+      "may_reduce": 45,
+      "severe": 20,
+      "unknown": 40
+    },
+    "conditions": {
+      "none": 100,
+      "manageable": 70,
+      "unknown": 50,
+      "unmet_risk": 30,
+      "unmet_likely": 5
+    }
+  },
+  "gates": {
+    "clear_exclusion_cap": 30,
+    "no_verified_coverage_cap": 25,
+    "only_secondary_documents_cap": 60,
+    "equivalence_threshold": 5,
+    "min_score_for_recommendation": 55
+  },
+  "radar_dimensions": [
+    "coverage_match",
+    "exclusion_risk",
+    "clarity",
+    "completeness",
+    "limits",
+    "evidence"
+  ]
+}
